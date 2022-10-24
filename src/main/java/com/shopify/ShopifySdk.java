@@ -775,6 +775,12 @@ public class ShopifySdk {
 		return getCustomers(response);
 	}
 
+	public List<Metafield> getConsumerMetafields(final String consumerId) {
+		final Response response = get(getWebTarget().path(CUSTOMERS).path(consumerId).path(METAFIELDS));
+		final MetafieldsRoot metafieldsRootResponse = response.readEntity(MetafieldsRoot.class);
+		return metafieldsRootResponse.getMetafields();
+	}
+
 	public ShopifyFulfillment cancelFulfillment(final String orderId, final String fulfillmentId) {
 		final WebTarget buildOrdersEndpoint = buildOrdersEndpoint();
 		final Response response = post(
