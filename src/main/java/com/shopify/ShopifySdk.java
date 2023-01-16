@@ -564,7 +564,8 @@ public class ShopifySdk {
 	}
 
 	public ShopifyPage<ShopifyOrder> getOrders() {
-		return getOrders(DEFAULT_REQUEST_LIMIT);
+		final Response response = get(buildOrdersEndpoint());
+		return getOrders(response);
 	}
 
 	public ShopifyPage<ShopifyOrder> getOrders(final int pageSize) {
